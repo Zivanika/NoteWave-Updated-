@@ -8,13 +8,13 @@ const Notes = () => {
     useEffect(()=>{
    getNotes()
     },[])
-    console.log(notes)
+    // console.log(notes)
   return (
     <>
      <AddNote/>
       <div className="row my-3">
     <h1>Your Notes</h1>
-    {notes.map((note)=>{
+    {notes?.map((note)=>{
       return <Noteitem key={note._id} note={note}/>
 
     })}
