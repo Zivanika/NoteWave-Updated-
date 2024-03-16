@@ -6,7 +6,7 @@ const {body,validationResult}=require("express-validator")
 // ROUTE 1: Get all the notes using GET : /api/notes/fetchallnotes
 router.get("/fetchallnotes",fetchuser,async(req,res)=>{
     try{ const notes=await Notes.find({user:req.user.id})
-    res.json(notes)}
+    res.json({notes})}
    catch(error){
     console.log(error.message)
         res.status(500).send("Internal server error")
@@ -28,7 +28,8 @@ router.post("/addnote",fetchuser,[
         title,description,tag,user:req.user.id
     })
     const savednote=await note.save()
-    res.json(savednote)}
+    res.json({savednote})
+}
     catch(error){
         console.log(error.message)
         res.status(500).send("Internal server error")
